@@ -4,7 +4,9 @@ const { faker } = require('@faker-js/faker');
 const mysql = require('mysql2');
 const path = require("path");
 const port = 8080;
-
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"))
+app.use(express.urlencoded({extended:true}))
 app.set("ejs","view engine");
 app.set("views",path.join(__dirname,"views"))
 
@@ -67,4 +69,21 @@ app.get("/users",(req,res)=>{
     }catch(err){
         console.log(err);
     }
+})
+app.get("/users/:id/edit",(req,res)=>{
+    let {id} = req.params;
+    let q = `SELECT * FROM temp WHERE id = '${id}'`
+    try{
+        connection.query(q,(err,result)=>{
+            if(err) throw err
+            let data = result[0];
+            res.render("edit.ejs",{data});
+        })
+    }catch(err){
+        console.log(err);
+    }
+})
+
+app.patch("/user/:id",(req,res)=>{
+    res.send("updated");
 })

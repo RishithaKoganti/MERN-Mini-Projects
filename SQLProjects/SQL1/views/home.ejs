@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User details</title>
+</head>
+<body>
+    <table border ="2px">
+        <tr>
+            <th>id</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        <% for (datas of data){%>
+        <tr>
+            <td><%= datas.id %></td>
+                <td><%= datas.username %></td>
+                <td><%= datas.email %></td>
+                <td><form method="GET" action="/users/<%=datas.id%>/edit"><button>Edit</button></form></td>
+            </tr>
+            <%}%>
+    </table>
+</body>
+</html>
