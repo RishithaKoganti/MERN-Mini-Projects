@@ -130,11 +130,6 @@ app.delete("/user/:id", (req, res) => {
     const { id } = req.params;
     const { password: formPassword, username: newUsername } = req.body;
   
-    // Validate request parameters
-    if (!id || !formPassword || !newUsername) {
-      return res.status(400).send("Missing required fields.");
-    }
-  
     // Query the database for user details
     const query = "SELECT * FROM temp WHERE id = ?";
     connection.query(query, [id], (err, results) => {
@@ -148,7 +143,7 @@ app.delete("/user/:id", (req, res) => {
         return res.status(404).send("User not found.");
       }
   
-      const data = results[0];
+      let data = results[0];
   
       // Validate password
       if (formPassword !== data.password) {
@@ -171,9 +166,3 @@ app.delete("/user/:id", (req, res) => {
       });
     });
   });
-  
-  // Server
-  app.listen(3000, () => {
-    console.log("Server running on port 3000");
-  });
-  
