@@ -1,0 +1,1 @@
+Performed CRUD operations on the random generated users using faker

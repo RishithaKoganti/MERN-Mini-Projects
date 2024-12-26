@@ -18,6 +18,7 @@
                 <td><%= datas.username %></td>
                 <td><%= datas.email %></td>
                 <td><form method="GET" action="/users/<%=datas.id%>/edit"><button>Edit</button></form></td>
+                <td><form method ="GET" action="/users/<%=datas.id%>/delete"><button>Delete</button></form></td>
             </tr>
             <%}%>
     </table>

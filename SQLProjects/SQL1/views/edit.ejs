@@ -3,14 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit form</title>
+    <title>Edit Form</title>
 </head>
 <body>
-    <h1>This is a edit form</h1>
-    <form method = "post" action ="/users/<%= data.id %>?_method=PATCH" >
-        <textarea name = "username"><%= data.username %></textarea><br>
-        <input type="password" name = "password"><br><br>
-        <button>Submit</button>
+    <h1>Edit User</h1>
+    <form method="POST" action="/users/<%= data.id %>?_method=PATCH">
+        <!-- Username Field -->
+        <label for="username">Username:</label>
+        <textarea id="username" name="username" required><%= data.username %></textarea><br><br>
+
+        <!-- Password Field -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>
