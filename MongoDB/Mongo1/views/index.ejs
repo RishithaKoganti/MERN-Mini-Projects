@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Route</title>
+    <link rel = "stylesheet" href="style.css">
+</head>
+<body>
+    <h1>All Chats</h1>
+    <form method="get" action="/chats/new"> <button>New Chat</button></form>
+   <% for(chats of msg){%>
+        <div class = "chatbox">
+            <h5>From: <%= chats.from %></h5>
+            <div class="msgbox">
+                <h4><%= chats.msgA %></h4>
+                <form method="get" action="/chats/<%= chats._id %>/edit">
+                    <button>Edit</button>
+                </form>
+                <form method="post" action="/chats/<%= chats._id %>?_method=DELETE">
+                    <button>Delete</button>
+                </form>
+            </div>
+            <h5>Received By: <%= chats.to %></h5>
+            <h5>Time: <%= chats.create_at.toString().split(" ")[4] %></h5>
+            <h5>Date : <%= chats.create_at.toString().split(" ").slice(0,3).join(" ") %></h5>
+            <hr>
+        </div>
+    <%}%>
+    
+</body>
+</html>
